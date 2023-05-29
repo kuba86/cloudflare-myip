@@ -61,10 +61,10 @@ export default {
           <h3>Host domain:</h3>
           <div class="row">
             <div class="col-9">
-              <input class="form-control" type="text" id="isp" value="${json.host.domain}" disabled>
+              <input class="form-control" type="text" id="host-domain" value="${json.host.domain}" disabled>
             </div>
             <div class="col-1">
-              <button class="btn btn-primary" type="button" onclick="copyTxt('isp');">Copy</button>
+              <button class="btn btn-primary" type="button" onclick="copyTxt('host-domain');">Copy</button>
             </div>
           </div>
           <br>
