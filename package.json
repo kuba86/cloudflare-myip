@@ -1,6 +1,6 @@
 {
   "name": "myip",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "devDependencies": {
     "wrangler": "^3.1.1"
   },
