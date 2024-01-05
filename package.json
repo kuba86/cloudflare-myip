@@ -2,7 +2,7 @@
   "name": "myip",
   "version": "0.0.3",
   "devDependencies": {
-    "wrangler": "^3.22.2"
+    "wrangler": "^3.22.3"
   },
   "private": true,
   "scripts": {
