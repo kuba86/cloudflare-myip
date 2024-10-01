@@ -1,8 +1,8 @@
 {
   "name": "myip",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "devDependencies": {
-    "wrangler": "^3.73.0"
+    "wrangler": "^3.109.1"
   },
   "private": true,
   "scripts": {
