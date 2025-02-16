@@ -1,3 +1,6 @@
 name = "myip"
 main = "src/index.js"
 compatibility_date = "2023-12-13"
+routes = [
+    { pattern = "myip.kuba86.com", custom_domain = true }
+]
