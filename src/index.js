@@ -3,9 +3,13 @@ export default {
         const realIp = request.headers.get("x-real-ip");
         const connectingIp = request.headers.get("cf-connecting-ip");
         const url1 = `https://ipinfo.io/${realIp}?token=${env.ipinfo_token}`;
-        const response = await fetch(url1);
-        const result = await response.text();
-        const json = JSON.parse(result);
+        const url2 = `https://ipapi.co/${realIp}/json`;
+        async function apiCall(url) {
+            const response = await fetch(url);
+            const result = await response.text();
+            return JSON.parse(result);
+        }
+        const json = await apiCall(url1);
         const html = `<!doctype html>
             <html lang="en" xmlns="http://www.w3.org/1999/html">
             <head>
@@ -41,7 +45,7 @@ export default {
               <h3>Organization:</h3>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="organization" value="${json.org}" disabled>
+                  <input class="form-control" type="text" id="organization" value="${json.org} | ${request.cf.asOrganization}" disabled>
                 </div>
                 <div class="col-1">
                   <button class="btn btn-primary" type="button" onclick="copyTxt('organization');">Copy</button>
