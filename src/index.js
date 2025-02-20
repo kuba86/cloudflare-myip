@@ -1,6 +1,6 @@
 export default {
   async fetch(request, env, ctx) {
-    const realIp = "1.1.1.1"; //request.headers.get("x-real-ip");
+    const realIp = request.headers.get("x-real-ip");
     const connectingIp = request.headers.get("cf-connecting-ip");
     const url1 = `https://ipinfo.io/${realIp}?token=${env.ipinfo_token}`;
     const url2 = `https://ipapi.co/${realIp}/json`;
