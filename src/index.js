@@ -1,16 +1,18 @@
 export default {
-    async fetch(request, env, ctx) {
-        const realIp = request.headers.get("x-real-ip");
-        const connectingIp = request.headers.get("cf-connecting-ip");
-        const url1 = `https://ipinfo.io/${realIp}?token=${env.ipinfo_token}`;
-        const url2 = `https://ipapi.co/${realIp}/json`;
-        async function apiCall(url) {
-            const response = await fetch(url);
-            const result = await response.text();
-            return JSON.parse(result);
-        }
-        const json = await apiCall(url1);
-        const html = `<!doctype html>
+  async fetch(request, env, ctx) {
+    const realIp = "1.1.1.1"; //request.headers.get("x-real-ip");
+    const connectingIp = request.headers.get("cf-connecting-ip");
+    const url1 = `https://ipinfo.io/${realIp}?token=${env.ipinfo_token}`;
+    const url2 = `https://ipapi.co/${realIp}/json`;
+
+    async function apiCall(url) {
+      const response = await fetch(url);
+      const result = await response.text();
+      return JSON.parse(result);
+    }
+
+    const json = await apiCall(url1);
+    const html = `<!doctype html>
             <html lang="en" xmlns="http://www.w3.org/1999/html">
             <head>
               <meta charset="utf-8">
@@ -21,94 +23,103 @@ export default {
             </head>
             <body>
             <div class="container">
-              <br>
-              <h3>Connecting IP:</h3>
+              <row>
+                <label for="connectingip" class="form-label pt-2">Connecting IP</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="connectingip" value="${connectingIp}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="connectingip" value="${connectingIp}" disabled>
                 </div>
-                <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('connectingip');">Copy</button>
+                <div class="col-1 align-self-center">
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('connectingip');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Real IP:</h3>
+              <row>
+                <label for="realip" class="form-label pt-2">Real IP</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="realip" value="${realIp}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="realip" value="${realIp}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('realip');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('realip');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Organization:</h3>
+              <row>
+                <label for="organization" class="form-label pt-2">Organization</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="organization" value="${json.org} | ${request.cf.asOrganization}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="organization" value="${json.org} | ${request.cf.asOrganization}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('organization');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('organization');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Hostname:</h3>
+              <row>
+                <label for="hostname" class="form-label pt-2">Hostname</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="hostname" value="${json.hostname}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="hostname" value="${json.hostname}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('hostname');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('hostname');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Country ISO:</h3>
+              <row>
+                <label for="countryIso" class="form-label pt-2">Country iso</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="countryIso" value="${json.country}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="countryIso" value="${json.country}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('countryIso');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('countryIso');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Region:</h3>
+              <row>
+                <label for="region" class="form-label pt-2">Region</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="region" value="${json.region}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="region" value="${json.region}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('region');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('region');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>City:</h3>
+              <row>
+                <label for="city" class="form-label pt-2">City</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="city" value="${json.city}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="city" value="${json.city}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('city');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('city');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Zip Code:</h3>
+              <row>
+                <label for="area_code" class="form-label pt-2">Area Code</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="area_code" value="${json.postal}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="area_code" value="${json.postal}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('area_code');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('area_code');">Copy</button>
                 </div>
               </div>
-              <br>
-              <h3>Timezone:</h3>
+              <row>
+                <label for="timezone" class="form-label pt-2">Timezone</label>
+              </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control" type="text" id="timezone" value="${json.timezone}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="timezone" value="${json.timezone}" disabled>
                 </div>
                 <div class="col-1">
-                  <button class="btn btn-primary" type="button" onclick="copyTxt('timezone');">Copy</button>
+                  <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('timezone');">Copy</button>
                 </div>
               </div>
             </div>
@@ -124,10 +135,10 @@ export default {
             </body>
             </html>
             `;
-        return new Response(html, {
-            headers: {
-                'content-type': 'text/html;charset=UTF-8',
-            },
-        });
-    },
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
+    });
+  },
 };
