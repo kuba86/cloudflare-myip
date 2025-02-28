@@ -50,7 +50,7 @@ export default {
               </row>
               <div class="row">
                 <div class="col-9">
-                  <input class="form-control form-control-sm" type="text" id="organization" value="${json.org} | ${request.cf.asOrganization}" disabled>
+                  <input class="form-control form-control-sm" type="text" id="organization" value="${json.org}" disabled>
                 </div>
                 <div class="col-1">
                   <button class="btn btn-primary btn-sm" type="button" onclick="copyTxt('organization');">Copy</button>
