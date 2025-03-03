@@ -3,7 +3,6 @@ export default {
     const realIp = request.headers.get("x-real-ip");
     const connectingIp = request.headers.get("cf-connecting-ip");
     const url1 = `https://ipinfo.io/${realIp}?token=${env.ipinfo_token}`;
-    const url2 = `https://ipapi.co/${realIp}/json`;
 
     async function apiCall(url) {
       const response = await fetch(url);
@@ -12,6 +11,40 @@ export default {
     }
 
     const json = await apiCall(url1);
+
+    function getCurrentDateTimeInWarsaw() {
+      const now = new Date();
+      const options = {
+        timeZone: 'Europe/Warsaw',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      };
+      return now.toLocaleString('en-PL', options);
+    }
+
+    await fetch('https://ntfy.kuba86.com/cloudflare-workers', {
+      method: 'POST', // PUT works too
+      headers: {
+        'Authorization': `Bearer ${env.ntfy_token}`,
+        'Title': `MyIP | ${realIp}`,
+        'Priority': 'low',
+        'Tags': 'cloudflare,myip'
+      },
+      body: `${getCurrentDateTimeInWarsaw()}
+      IP: ${realIp}
+      Organization: ${json.org}
+      Hostname: ${json.hostname}
+      Country: ${json.country}
+      Region: ${json.region}
+      City: ${json.city}
+      Postal: ${json.postal}
+      Timezone: ${json.timezone}`
+    })
+
     const html = `<!doctype html>
             <html lang="en" xmlns="http://www.w3.org/1999/html">
             <head>
