@@ -23,7 +23,7 @@ export default {
         minute: '2-digit',
         second: '2-digit',
       };
-      return now.toLocaleString('en-PL', options);
+      return now.toLocaleString('pl-PL', options);
     }
 
     await fetch('https://ntfy.kuba86.com/cloudflare-workers', {
