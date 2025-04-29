@@ -31,7 +31,7 @@ export default {
             .replaceAll("http://", "")
             .replaceAll(request.headers.get("host") + "/", "")
 
-        if (urlLastPart !== "favicon.ico") {
+        if (urlLastPart !== "favicon.ico" && 1 === 0) {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 seconds timeout
 
