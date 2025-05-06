@@ -70,7 +70,7 @@ export default {
         }
 
         const html = `<!doctype html>
-            <html lang="en" xmlns="http://www.w3.org/1999/html">
+            <html lang="en" data-bs-theme="dark">
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
