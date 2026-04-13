@@ -2,7 +2,7 @@
   "name": "myip",
   "version": "1.0.0",
   "devDependencies": {
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "wrangler": "^4.80.0"
   },
   "private": true,
