@@ -2,8 +2,8 @@
   "name": "myip",
   "version": "1.0.0",
   "devDependencies": {
-    "prettier": "3.8.4",
-    "wrangler": "^4.105.0"
+    "wrangler": "^4.105.0",
+    "prettier": "3.9.3"
   },
   "private": true,
   "scripts": {
